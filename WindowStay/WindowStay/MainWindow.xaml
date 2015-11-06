@@ -1,0 +1,67 @@
+﻿<Window x:Class="WindowStay.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WindowStay"
+        mc:Ignorable="d"
+        Title="WindowStay" Height="500" Width="500"
+        Icon="Resources/TrayIcon.ico">
+    <Grid>
+        <TabControl x:Name="tabControl" Margin="0,0,0,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+            <TabItem Header="Save windows">
+                <Grid Background="#FFE5E5E5">
+                    <Button x:Name="btn_getWindow" Content="Get window" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="462" Height="60" FontSize="21.333" Click="btn_getWindow_Click"/>
+                    <Button x:Name="btn_cancelClick" Content="Cancel click" HorizontalAlignment="Left" Margin="10,192,0,0" VerticalAlignment="Top" Width="140" Height="60" FontSize="21.333" IsEnabled="False" Click="btn_cancelClick_Click"/>
+                    <Button x:Name="btn_save" Content="Save" HorizontalAlignment="Left" Margin="332,192,0,0" VerticalAlignment="Top" Width="140" Height="60" FontSize="21.333" IsEnabled="False"  Click="btn_save_Click"/>
+                    <Label x:Name="label_Title" Content="" HorizontalAlignment="Left" Margin="69,100,0,0" VerticalAlignment="Top" Width="403" Height="60" FontSize="21.333" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="#FF8D8D8D"/>
+                    <Label x:Name="label" Content="Title:" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" Width="59" Height="60" FontSize="21.333" VerticalContentAlignment="Center"/>
+
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="10,257,10,10">
+                        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="auto" Width="462"/>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Current windows">
+                <Grid Background="#FFE5E5E5">
+                    <ListView x:Name="listView" HorizontalAlignment="Left" Height="375" Margin="10,53,0,0" VerticalAlignment="Top" Width="462" SelectionMode="Multiple">
+                        <ListView.View>
+                            <GridView>
+
+                                <GridViewColumn Header="Delete" Width="75" >
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <CheckBox IsChecked="{Binding RelativeSource={RelativeSource AncestorType=ListViewItem},Path=IsSelected}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Window Title" DisplayMemberBinding="{Binding WindowTitle}" Width="387"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Button x:Name="btn_deleteSelected" Content="Delete selected" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="121" Height="38" Click="btn_deleteSelected_Click"/>
+                    <Button x:Name="btn_positionSelected" Content="Position selected" HorizontalAlignment="Left" Margin="262,10,0,0" VerticalAlignment="Top" Width="121" Height="38" Click="btn_positionSelected_Click"/>
+                    <Button x:Name="btn_positionAll" Content="Position all" HorizontalAlignment="Left" Margin="136,10,0,0" VerticalAlignment="Top" Width="121" Height="38" Click="btn_positionAll_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Settings">
+                <Grid Background="#FFE5E5E5">
+                    <CheckBox x:Name="checkbox_runStartup" Content="Automatically position saved windows on StartUp?" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"
+	    Checked="Checkbox_runStartup_Checked"
+	    Unchecked="Checkbox_runStartup_Unchecked"/>
+
+                </Grid>
+            </TabItem>            
+            <TabItem Header="How-To">
+                <Grid Background="#FFE5E5E5">
+                    <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="10,10,0,0" Width="462" Height="418" FontSize="13.333"><Run FontWeight="Bold" Text="How this works"/></TextBlock>
+                </Grid>
+            </TabItem>
+            <TabItem Header="More text">
+                <Grid Background="#FFE5E5E5">
+                    <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="10,10,0,0" Width="462" Height="418" FontSize="13.333"><Run FontWeight="Bold" Text="Who made this"/><Run FontWeight="Bold" Text="?"/><LineBreak/><Run Text="Hi there, my name is Kim :)"/><LineBreak/><Run Text="I made the original version of this program"/><Run Text="."/><LineBreak/><Run/><LineBreak/><Run FontWeight="Bold" Text="Source Code"/><LineBreak/><Run Text="You can get the full source code at https://github.com/kim-cv/WindowStay"/><LineBreak/><Run Text="You are welcome to contribute to this software with either fixes, improvements or new features."/><LineBreak/><Run/><LineBreak/><Run FontWeight="Bold" Text="Thanks"/><LineBreak/><Run Text="Thanks to gmamaladze for creating GlobalMouseKeyHook for C#"/><LineBreak/><Run Text="https://github.com/gmamaladze/globalmousekeyhook"/></TextBlock>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
