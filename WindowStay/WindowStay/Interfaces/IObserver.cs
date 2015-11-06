@@ -5,7 +5,7 @@ namespace WindowStay.Interfaces
 {
     public interface IObserver
     {
-        void Update(GetWindow value);
-        void Update(List<GetWindow> value);
+        void Update(ProgramWindow value);
+        void Update(List<ProgramWindow> value);
     }
 }

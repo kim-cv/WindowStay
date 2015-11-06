@@ -17,7 +17,7 @@ namespace WindowStay.Controller
 
         // A Collection to keep track of all Registered Observers
         List<IObserver> _observers = new List<IObserver>();
-        public GetWindow Window { get; set; }
+        public ProgramWindow Window { get; set; }
         
         private IKeyboardMouseEvents _mGlobalHook;
         [DllImport("user32.dll")]
@@ -70,7 +70,7 @@ namespace WindowStay.Controller
             try
             {
                 InvokeStructs.RECT rect = GetWindowRectFromHandle(windowHandle);
-                Window = new GetWindow(process.MainWindowTitle, rect);
+                Window = new ProgramWindow(process.MainWindowTitle, rect);
                 Notify();
             }
             catch (Exception exception)

@@ -92,7 +92,7 @@ namespace WindowStay
             GetWindowController.Instance.StopGetWindow();
 
             //Do save
-            GetWindow window = GetWindowController.Instance.Window;
+            ProgramWindow window = GetWindowController.Instance.Window;
             _windowListController.SaveWindow(window);
 
             GetWindowController.Instance.Reset();
@@ -105,13 +105,13 @@ namespace WindowStay
 
         private void btn_deleteSelected_Click(object sender, RoutedEventArgs e)
         {
-            List<GetWindow> windowsToRemove = listView.SelectedItems.Cast<GetWindow>().ToList();
+            List<ProgramWindow> windowsToRemove = listView.SelectedItems.Cast<ProgramWindow>().ToList();
             _windowListController.DeleteWindows(windowsToRemove);
         }
 
         private void btn_positionSelected_Click(object sender, RoutedEventArgs e)
         {
-            List<GetWindow> windowsToPosition = listView.SelectedItems.Cast<GetWindow>().ToList();
+            List<ProgramWindow> windowsToPosition = listView.SelectedItems.Cast<ProgramWindow>().ToList();
             _windowListController.PositionWindows(windowsToPosition);
         }
 
@@ -166,7 +166,7 @@ namespace WindowStay
 
         #region observer
         //Got a new window
-        public void Update(GetWindow value)
+        public void Update(ProgramWindow value)
         {
             if (value.WindowTitle != null)
             {
@@ -175,11 +175,11 @@ namespace WindowStay
             }
         }
         //Got a list of new windows
-        public void Update(List<GetWindow> value)
+        public void Update(List<ProgramWindow> value)
         {
             listView.Items.Clear();
 
-            foreach (GetWindow window in value)
+            foreach (ProgramWindow window in value)
             {
                 listView.Items.Add(window);
             }

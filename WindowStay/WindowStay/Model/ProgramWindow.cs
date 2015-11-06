@@ -6,7 +6,7 @@ using WindowStay.Model;
 
 namespace WindowStay.Controller
 {
-    public class GetWindow
+    public class ProgramWindow
     {
         [DllImport("user32.dll", SetLastError = true)]
         static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy, InvokeStructs.SetWindowPosFlags uFlags);
@@ -21,7 +21,7 @@ namespace WindowStay.Controller
         public int Width => (WindowRect.Right - WindowRect.Left + 1);
         public int Height => (WindowRect.Bottom - WindowRect.Top + 1);
 
-        public GetWindow(string windowTitle, InvokeStructs.RECT windowRect)
+        public ProgramWindow(string windowTitle, InvokeStructs.RECT windowRect)
         {
             WindowTitle = windowTitle;
             WindowRect = windowRect;

@@ -11,14 +11,14 @@ namespace WindowStay.Controller
     {
         // A Collection to keep track of all Registered Observers
         private readonly List<IObserver> _observers = new List<IObserver>();
-        private readonly List<GetWindow> _windows = new List<GetWindow>();
+        private readonly List<ProgramWindow> _windows = new List<ProgramWindow>();
 
         public WindowListController()
         {
             LoadAllWindows();
         }
 
-        private void AddWindowElement(GetWindow window)
+        private void AddWindowElement(ProgramWindow window)
         {
             XElement el = new XElement("window");
             el.Add(new XAttribute("title", window.WindowTitle));
@@ -30,7 +30,7 @@ namespace WindowStay.Controller
             XmlController.Instance.AddWindowElement(el);
         }
 
-        private void UpdateWindowElement(GetWindow window)
+        private void UpdateWindowElement(ProgramWindow window)
         {
             XElement el = new XElement("window");
             el.Add(new XAttribute("title", window.WindowTitle));
@@ -67,19 +67,19 @@ namespace WindowStay.Controller
                     Left = Convert.ToInt16(element.Attribute("left").Value)
                 };
 
-                _windows.Add(new GetWindow(title, rect));
+                _windows.Add(new ProgramWindow(title, rect));
             }
             Notify();
         }
 
-        public void SaveWindow(GetWindow window)
+        public void SaveWindow(ProgramWindow window)
         {
             if (DoesWindowElementExist(window.WindowTitle))
             {
                 UpdateWindowElement(window);
 
                 //Find window we updated in list
-                foreach (GetWindow item in _windows)
+                foreach (ProgramWindow item in _windows)
                 {
                     if (item.WindowTitle == window.WindowTitle)
                     {
@@ -96,9 +96,9 @@ namespace WindowStay.Controller
             Notify();
         }
 
-        public void DeleteWindows(List<GetWindow> windows)
+        public void DeleteWindows(List<ProgramWindow> windows)
         {
-            foreach (GetWindow window in windows.Where(window => DoesWindowElementExist(window.WindowTitle)))
+            foreach (ProgramWindow window in windows.Where(window => DoesWindowElementExist(window.WindowTitle)))
             {
                 //Delete XML element
                 DeleteElement(window.WindowTitle);
@@ -107,7 +107,7 @@ namespace WindowStay.Controller
             LoadAllWindows();
         }
 
-        public void PositionWindows(List<GetWindow> windows)
+        public void PositionWindows(List<ProgramWindow> windows)
         {
             windows.ForEach(window => window.PositionWindow());
         }
